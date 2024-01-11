@@ -63,6 +63,7 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
 
         //获取锁对象
         //SimpleRedisLock lock = new SimpleRedisLock("order:" + userId, stringRedisTemplate);
+        //调用Redisson的分布式锁 ---2024年1月11日
         RLock lock = redissonClient.getLock("redissonLock:order" + userId);
 
         //判断获取锁是否成功
